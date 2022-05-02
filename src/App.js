@@ -56,7 +56,7 @@ function App() {
     startVideo();
 
     videoRef && loadModels();
-  }, [loadModels]);
+  }, []);
 
 
 
