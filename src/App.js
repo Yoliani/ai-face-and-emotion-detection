@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import "./App.css";
 import * as faceapi from "face-api.js";
-
+import NavbarComponent from "./components/NavbarComponent";
 function App() {
   const videoRef = useRef();
   const canvasRef = useRef();
@@ -46,6 +46,9 @@ function App() {
         width: 940,
         height: 650,
       });
+      canvasRef.current
+        .getContext("2d")
+        .clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
       faceapi.draw.drawDetections(canvasRef.current, resized);
       faceapi.draw.drawFaceLandmarks(canvasRef.current, resized);
@@ -58,21 +61,32 @@ function App() {
     videoRef && loadModels();
   }, []);
 
-
-
   return (
-    <div className="app">
-      <h1>IA - Deteccion de emociones</h1>
-      <div className="app__video">
-        <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+    <>
+      <div style={{ width: "100%" }}>
+        <NavbarComponent />
       </div>
-      <canvas
-        ref={canvasRef}
-        width="940"
-        height="650"
-        className="app__canvas"
-      />
-    </div>
+      <div className="app">
+        <h1 style={{ color: "white" }}>IA - Deteccion de emociones</h1>
+        <div className="app__video">
+		  <canvas
+          style={{ borderRadius: "10px" }}
+          ref={canvasRef}
+          width="940"
+          height="650"
+          className="app__canvas"
+        />
+          <video
+            style={{ borderRadius: "10px" }}
+            crossOrigin="anonymous"
+            ref={videoRef}
+            autoPlay
+          ></video>
+  
+        </div>
+    
+      </div>
+    </>
   );
 }
 

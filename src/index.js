@@ -1,13 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UploadImage from "./pages/UploadImages"
+import { ThemeProvider } from "react-bootstrap";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+
   <React.StrictMode>
-    <App />
+  <ThemeProvider>
+ <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+          <Route path="/upload-image" element={<UploadImage/>} />
+      </Routes>
+    </BrowserRouter>
+  
+  </ThemeProvider>
+   
   </React.StrictMode>
 );
 
